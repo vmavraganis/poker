@@ -1,0 +1,147 @@
+@viewport {
+    width: device-width;
+    zoom: 20%;
+}
+
+html * {
+    font-size: 12pt;
+}
+
+
+
+.frame{
+    border-style: double;
+    padding: 0.1em;
+
+}
+
+.ridge{
+    border-style: ridge;
+    border-color: lightblue;
+    border-width: 0.2em;
+}
+
+.outset{
+    border-style: outset;
+    border-color: #d2e3ed;
+    border-width:0.4em ;
+}
+
+
+.framenpd{
+    border-style: double;
+    padding: 14px;
+    margin-bottom: 1em;
+
+}
+
+div{
+
+
+}
+.unvisible{
+
+
+    visibility:hidden;
+}
+
+.cardcontainer{
+    margin-bottom: 2px;
+}
+
+.playingCards{
+    background-image: url("./poker-table-felt.jpg");
+    background-size:  cover ;
+    margin-top:1em;
+    padding-top: 1em;
+}
+
+.row .playingCards{
+    padding:4% 3% 7% 5%;
+    height: 16em;
+}
+
+.pot p{
+
+    font-size: 150%;
+    min-width:0px !important;
+    padding-left:0% ;
+    margin:0;
+}
+
+
+#dealandgamepot{
+    height:4em;
+
+}
+
+#roundpot {
+    padding-right:0px;
+
+}
+#roundpotp{
+    font-size: 200%;
+}
+
+
+#players{
+    margin-top:0.9em;
+}
+
+
+.playerraise{
+    width: 100%;
+}
+.playerraisecontainer{
+    height:2em;
+    margin-top:3%;
+}
+.playerraisecontainer input{
+    width: 100%;
+}
+
+.playerraisecontainer label {
+    float: right;
+    margin-right: 5px;
+    background: #ccc
+}
+
+.playerraisecontainer{
+    overflow: hidden;
+}
+
+.card{
+    max-width: 100%;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+a.disabled {
+    color: #AAAAAA;
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+}
+
+
+.handvalue{
+    height: 2em;
+    margin-top: 2%;
+}
+
+
+

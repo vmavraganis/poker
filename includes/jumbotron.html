@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="Poker">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/poker.css">
+    <link rel="stylesheet" type="text/css" href="../css/cards-ie.css">
+    <link rel="stylesheet" type="text/css" href="../css/cards-ie9.css">
+    <link rel="stylesheet" type="text/css" href="../css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="../css/cards.css">
+    <link href='http://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple' rel='stylesheet' type='text/css'>
+    <script src="../scripts/angular.js"></script>
+    <script src="../scripts/dealing.js"></script>
+    <script src="../scripts/pokerservices.js"></script>
+    <script src="../scripts/pokerfilters.js"></script>
+    <script src="../scripts/uibootstrap.min.js"></script>
+    <script src="../scripts/calculating.js"></script>
+    <script src="../scripts/directives.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container text-center" ng-controller="GameController as Gctrl">
+
+	<div class="row">
+				<div class="col-md-7 col-md-offset-2">
+				
+				
+				    <div class="jumbotron text-center" >
+		<div class="container">
+		
+      
+			<h1>Game start</h1>
+		</div>
+    </div>
+
+	
+         
+		<div class="row" id="header">
+	  
+			<div class="col-md-12" >
+				<h2>How many players</h2>
+			</div>
+		</div>
+		<div class="row empty"></div>
+		<div class="row empty"></div>
+	
+	    <div class="row id=select">
+			<div class="col-md-12" >
+				<select ng-model="ctrl.players">
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>	
+		</div>	
+		
+		
+        <div class="row empty"></div>	
+		<div class="row empty"></div>
+        <div class="row" id="button">		
+			<div class="col-md-12" >
+					<button  class="btn btn-info" ng-click="ctrl.initGame(ctrl.players)">ok</button>
+			</div>	
+		</div>
+	  </div>
+				
+				
+				
+				
+				
+				
+	</div>
+
+
+</div>
+
+ </div>     
+
+      
+
+    
+  </body>
+</html>

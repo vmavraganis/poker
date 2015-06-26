@@ -1,0 +1,22 @@
+					<div class="cardcontainer col-md-3 col-md-offset-1" ng-repeat="Card in player.handcards"
+
+                         ng-if="Card && !player.cardhidden &&ctrl.round.count!=3 &&player.active">
+                        <card cardrank="{{Card.rank|dealpropdisplay}}" cardsuit="{{Card.suit|dealpropdisplay}}" symbol="{{Card.suit|symboldisplay}}"></card>
+                    </div>
+					
+					<div class="cardcontainer col-md-3 col-md-offset-1" ng-repeat="Card in player.handcards" ng-click="player.handcards.splice($index, 1)"
+
+                         ng-if="Card && !player.cardhidden &&ctrl.round.count==3 &&player.active">
+                        <card cardrank="{{Card.rank|dealpropdisplay}}" cardsuit="{{Card.suit|dealpropdisplay}}" symbol="{{Card.suit|symboldisplay}}" ></card>
+                    </div>
+
+                   <div  class="cardcontainer col-md-3 col-md-offset-1" ng-repeat="Card in player.handcards "  ng-if="Card && player.cardhidden &&player.active">
+                       <card side="back" cardrank="{{Card.rank|dealpropdisplay}}" cardsuit="{{Card.suit|dealpropdisplay}}" symbol="{{Card.suit|symboldisplay}}" ></card>
+                    </div>
+            
+
+
+
+			
+			
+		

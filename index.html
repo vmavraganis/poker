@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html ng-app="Poker">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/poker.css">
+    <link rel="stylesheet" type="text/css" href="css/cards-ie.css">
+    <link rel="stylesheet" type="text/css" href="css/cards-ie9.css">
+    <link rel="stylesheet" type="text/css" href="css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="css/cards.css">
+    <link href='http://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple' rel='stylesheet' type='text/css'>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/controller.js"></script>
+    <script src="scripts/pokerservices.js"></script>
+    <script src="scripts/pokerfilters.js"></script>
+    <script src="scripts/uibootstrap.min.js"></script>
+    <script src="scripts/functions.js"></script>
+    <script src="scripts/directives.js"></script>
+
+
+</head>
+
+<body ng-controller="GameController as ctrl">
+
+
+<div class="container" >
+
+
+
+    <div  id="noofround" class="row ">
+        <div class="col-md-6 col-md-offset-3">
+            <h1 class=" text-center">{{ctrl.round.count|roundname}} </h1>
+
+        </div>
+    </div>
+
+
+
+    <div  id=nameofround" class="row">
+        <div class=" col-md-6 col-md-offset-3">
+            <h2 class="  text-center">{{ctrl.round.description}}</h2>
+        </div>
+    </div>
+
+        <div  id="dealandgamepot" class="row" >
+        <div ng-class="{'unvisible':!ctrl.round.bet}" class="col-md-2  pot"><p class="text-right ">RoundPot:{{ctrl.round.pot}} &euro;</p>
+        </div>
+        <div   ng-class="{'unvisible':ctrl.round.bet}" class="col-md-2 col-md-offset-3 ">
+            <button ng-if="ctrl.round.count==1"   class="dealstartbutton action-button shadow animate btn  green" ng-click="ctrl.deal()">Deal cards</button>
+            <button ng-if="ctrl.round.count==0"   class =' dealstartbutton action-button shadow animate btn  blue' ng-click="ctrl.dealrestart()">start</button>
+            <button ng-if="ctrl.round.count==5||ctrl.round.count==6" id="new round"  class='action-button shadow animate btn  blue' ng-click="ctrl.newgame()">New game</button>
+        </div>
+        <div class="col-md-2 col-md-offset-3 pot"><p class=" text-right ">GamePot:{{ctrl.Game.pot}} &euro;</p>
+        </div>
+    </div>
+
+  <form name="playersform">
+    <div  id="players" class="row  framenpd">
+
+        <div  class="  col-md-{{ctrl.noofdivs}} text-center" ng-repeat="player in ctrl.players" >
+            <h2 class="ridge"> {{player.name}}</h2>
+            <div  class="playerpot row">
+                <div class=" frameppot col-md-4 col-md-offset-4 pot"> <p class="frame">{{player.pot}} &euro;</p></div>
+            </div>
+
+            <div class="playingCards row  fourColours faceImages  " ng-include="'includes/handcard.html'"><!--Cards on the table -->
+            </div>
+
+            <div class=" row">
+                <div class="col-md-10 col-md-offset-1" >
+                    <p class=" text-center handvalue" ng-class="{'unvisible':player.cardhidden||player.handcards.length<5} "class="handvalue">
+                        {{ctrl.Game.rankhand(player.handcards).msg}} </p>
+                </div>
+            </div>
+
+    <ng-form name="bettingform">
+
+            <div class="playerbet row">
+                <div ng-class=" {'unvisible':!player.ishuman}"
+
+                     class="col-md-8 col-md-offset-2 pot">
+                    <p ng-if="player.bet>0" >Player bet:{{player.bet}} &euro;</p>
+                    <a ng-if="ctrl.round.count==3&&player.active&&!player.cardhidden" href="" class="btn rounddrawbutton shadow animate green" ng-click="ctrl.discard(player)">discard</a>
+
+                </div>
+            </div>
+
+
+
+
+         <div class="bettingpanel ">
+            <div class="foldcheck row " ng-class="{'unvisible':!player.canbet}" >
+                <!--fold check panel-->
+                <div class="col-md-10 col-md-offset-1" >
+                    <div class="col-md-4 col-md-offset-2" >
+                        <a href="" class="btn action-button shadow animate red" ng-click="fold(player)">fold</a>
+                    </div>
+                    <div class="col-md-6 " >
+                        <button  class="btn btn-warning action-button shadow animate" ng-click="ctrl.checkcall(player)">check/call{{ctrl.player.bt}}</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="raise row" ng-class="{'unvisible':!player.canbet}" >
+                <!--fold check panel-->
+                <div class="col-md-10 col-md-offset-1" >
+                    <div class="col-md-4 col-md-offset-2" >
+                        <a ng-class="{'unvisible':!bettingform.$valid}"  class="btn action-button shadow animate green"
+                           ng-click="ctrl.raise(player)">raise</a> <!--! a-disabled="bettingform.$valid"-->
+                    </div>
+                    <div class="col-md-6 playerraisecontainer " >
+                        <input class="playerraise" type="number" name="raise" ng-model="ctrl.player.bet"
+                               ng-model-options="{ debounce: 150 }"
+                               ng-min="0" ng-max="player.pot-ctrl.round.minbet" >
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+    </ng-form>
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+</form>
+
+
+    </div>
+
+
+
+
+
+
+</body>
+
+
+</html>
